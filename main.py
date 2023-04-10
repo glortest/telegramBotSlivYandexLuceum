@@ -1,3 +1,4 @@
+from pickle import loads, dumps, load, dump
 
 """"5381154310:AAHGvmHoo6StoC8_UpcIjZ8bWt4rVAccdzs"""
 from data_base import *
@@ -6,17 +7,6 @@ from telegram.ext import Application, MessageHandler, filters
 from telegram.ext import CommandHandler
 
 import datetime
-
-
-async def start(update, context):
-    user = update.effective_user
-    await update.message.reply_html(
-        rf"Привет {user.mention_html()}! Я эхо-бот. Напишите мне что-нибудь, и я пришлю это назад!",
-    )
-
-
-async def help_command(update, context):
-    await update.message.reply_text("Я пока не умею помогать... Я только ваше эхо.")
 
 
 
@@ -29,7 +19,6 @@ logger = logging.getLogger(__name__)
 
 
 async def echo(update, context):
-    print(update.message.text)
     print('id: ' + str(update.message.from_user.id) + '; username: ' +
           str(update.message.from_user.username) + '; name: ' + str(update.message.from_user.first_name) + ' ' +
           str(update.message.from_user.last_name) + ' -> ' + str(update.message.text))
@@ -55,7 +44,6 @@ def main():
     application.add_handler(text_handler)
 
     application.run_polling()
-
 
 
 def proverka_na_premium(message):
@@ -84,4 +72,8 @@ def checkingAvailability(text, premium):
 
 
 if __name__ == '__main__':
+    with open('db_cash.json') as filej:
+        cash_db = json.load(filej)
+    with open('db_free.json') as filej:
+        free_db = json.load(filej)
     main()

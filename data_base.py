@@ -1,4 +1,9 @@
-free_db = {'': 'None',
+from pickle import loads, dump
+import json
+
+from anyio.streams import file
+
+fre_db = {'': 'None',
               'Приветствие': '''
 print('Привет, Яндекс!')''',
               'Знакомство': '''
@@ -4400,7 +4405,7 @@ def main():
            }
 
 
-cash_db = {'Морской бой': '''
+cas_db = {'Морской бой': '''
 def vertical(matrix):
     matrix_new = []
     for i in range(1, len(matrix) + 1):
@@ -7269,3 +7274,9 @@ class Board:
                         return True          
         return False'''
               }
+
+with open("db_cash.json", "w") as cf:
+    json.dump(cas_db, cf)
+
+with open("db_free.json", "w") as cf:
+    json.dump(fre_db, cf)
