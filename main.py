@@ -29,26 +29,14 @@ async def readingNotifications(update, context):
     await update.message.reply_text(checkingAvailability(update.message.text, premium))
 
 
-def main():
-    application = Application.builder().token("5381154310:AAHGvmHoo6StoC8_UpcIjZ8bWt4rVAccdzs").build()
-
-    text_handler = MessageHandler(filters.TEXT, readingNotifications)
-
-    application.add_handler(text_handler)
-
-    application.run_polling()
 
 
 def checkingForPremium(message):
     f = open("CashUsers.txt", "r", encoding="utf8")
     lines = [elem.strip() + "" for elem in f.readlines()]
     f.close()
-    print(lines)
-    print(message)
     for elem in lines:
         if elem == message:
-            print(elem)
-
             return True
     return False
 
@@ -95,6 +83,16 @@ def checkingAvailability(text, premium):
 
     else:
         return "похоже, вы ошиблись и не правильно ввели текст"
+
+
+def main():
+    application = Application.builder().token("5381154310:AAHGvmHoo6StoC8_UpcIjZ8bWt4rVAccdzs").build()
+
+    text_handler = MessageHandler(filters.TEXT, readingNotifications)
+
+    application.add_handler(text_handler)
+
+    application.run_polling()
 
 
 if __name__ == '__main__':
