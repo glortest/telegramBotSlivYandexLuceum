@@ -29,6 +29,14 @@ async def readingNotifications(update, context):
     await update.message.reply_text(checkingAvailability(update.message.text, premium))
 
 
+def main():
+    application = Application.builder().token("5381154310:AAHGvmHoo6StoC8_UpcIjZ8bWt4rVAccdzs").build()
+
+    text_handler = MessageHandler(filters.TEXT, readingNotifications)
+
+    application.add_handler(text_handler)
+
+    application.run_polling()
 
 
 def checkingForPremium(message):
@@ -85,14 +93,6 @@ def checkingAvailability(text, premium):
         return "похоже, вы ошиблись и не правильно ввели текст"
 
 
-def main():
-    application = Application.builder().token("5381154310:AAHGvmHoo6StoC8_UpcIjZ8bWt4rVAccdzs").build()
-
-    text_handler = MessageHandler(filters.TEXT, readingNotifications)
-
-    application.add_handler(text_handler)
-
-    application.run_polling()
 
 
 if __name__ == '__main__':
