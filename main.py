@@ -5,8 +5,6 @@ from telegram.ext import CommandHandler
 
 """"5381154310:AAHGvmHoo6StoC8_UpcIjZ8bWt4rVAccdzs"""
 
-
-
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG
 )
@@ -117,14 +115,14 @@ def checkingAvailability(text, premium):
         return "OK"
 
     elif text == "/DebugModeLoginGlortestParol14881488ChangeAllUsers":
-        filep = open("CashUsers.txt", "w", encoding="utf8")
+        filep = open("CashUsers.txt", "a", encoding="utf8")
         f = open("Request.txt", "r", encoding="utf8")
         lines = [elem.strip() + "" for elem in f.readlines()]
         if len(lines) == 0:
             return "Empty"
         for elem in lines:
             print(elem.split())
-            filep.writelines(elem.split()[0])
+            filep.writelines("\n" + elem.split()[0])
         return "OK"
 
     else:
