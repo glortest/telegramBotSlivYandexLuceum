@@ -28,7 +28,7 @@ async def readingNotifications(update, context):
 
 
 def main():
-    application = Application.builder().token("5381154310:AAHGvmHoo6StoC8_UpcIjZ8bWt4rVAccdzs").build()
+    application = Application.builder().token("Хуй вам, а не токен").build()
 
     text_handler = MessageHandler(filters.TEXT, readingNotifications)
 
